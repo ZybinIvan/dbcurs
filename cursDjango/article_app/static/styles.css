@@ -1,0 +1,87 @@
+/*---------------------------------------Статья-------------------------------------------*/
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.article-card {
+    border: 1px solid #000;
+    width: 33%; /* Занимает треть страницы по ширине */
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* Включает padding и border в ширину элемента */
+    border-radius: 15px;
+}
+
+.article-header {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000;
+}
+
+.article-title {
+    font-weight: bold;
+    margin: 0; /* Убирает стандартные отступы */
+    padding: 0 20px; /* Добавляет отступы по бокам */
+}
+
+.article-text {
+    flex-grow: 1;
+    padding: 0 10px; /* Добавляет отступы по бокам */
+}
+
+.article-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-top: 1px solid #000;
+}
+
+
+/* -----------------------------------------------Список статей-----------------------*/
+
+.article-link {
+    display: block;
+    padding: 10px 15px;
+    margin: 10px 0;
+    width: 20%;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+.article-link:hover {
+    background: #e9e9e9;
+}
+
+
+/*-----------*/
+
+.au-button {
+    background-color: #007bff; /* Цвет фона */
+    color: #fff; /* Цвет текста */
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px; /* Скругление углов */
+
+    width: 150px;
+    height: 40px;
+
+    margin-top: 10px;
+}
+
+.au-button:hover {
+    background-color: #0056b3;
+}
+
+

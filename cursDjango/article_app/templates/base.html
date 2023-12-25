@@ -1,0 +1,45 @@
+<!--{% load static %}-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static 'styles.css' %}" rel="stylesheet">
+</head>
+<body>
+
+<div class="nav-block">
+
+    {%if request.user.is_authenticated %}
+        <span>
+            {{ request.user.username }}
+        </span>
+        <br>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="au-button" type="submit">Выход</button>
+            </form>
+
+    {%else%}
+        <form method="get" action="{% url 'login' %}">
+                <button class="au-button" type="submit">Логин</button>
+        </form>
+
+        <form method="get" action="{% url 'sign' %}">
+            <button class="au-button" type="submit">Регистрация</button>
+        </form>
+
+    {%endif%}
+
+
+</div>
+
+    <a href="{% url 'start' %}">
+        <button>Статьи</button>
+    </a>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

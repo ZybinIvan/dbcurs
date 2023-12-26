@@ -9,7 +9,7 @@ class Article(models.Model):
 
     title = models.CharField(verbose_name="Заголовок", max_length=256, null=False, blank=True)
 
-    created_at = models.DateTimeField(verbose_name="Создан", auto_now=True)
+    created_at = models.DateTimeField(verbose_name="Создан", auto_now_add=True)
 
     author = models.ForeignKey(to=User, on_delete=models.CASCADE)
 

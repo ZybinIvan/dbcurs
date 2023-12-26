@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="user-block">
+
+    <div class="user-block__header">
+
+        {{ user.first_name }} {{ user.last_name }}
+
+    </div>
+
+
+
+    <div class="user-block__role">
+
+        {{ user.groups.all.0 }}
+
+    </div>
+
+    {% if is_own_profile %}
+
+    {% if is_redactor_or_admin %}
+
+    <form method="get" action="{% url 'create' %}">
+            <button class="au-button" type="submit">Создать статью</button>
+    </form>
+
+    {% endif %}
+
+    <div class="articles">Мои статьи</div>
+
+
+    {% else %}
+    <div class="articles">Статьи</div>
+    {% endif %}
+
+    <div>
+
+        {% for article in articles %}
+            <a href="/article/{{ article.id }}" class="article-link">{{ article.title }}</a>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+{% endblock %}

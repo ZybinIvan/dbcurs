@@ -11,7 +11,7 @@
 <div class="nav-block">
 
     {%if request.user.is_authenticated %}
-        <a href="{% url 'profile' user.id %}"><button class="au-button">Профиль {{ request.user.username }}</button></a>
+    <a href="{% url 'profile' user.id %}"><button class="au-button">Профиль {{ request.user.username }}</button></a>
         <br>
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
@@ -29,8 +29,8 @@
 
     {%endif%}
 
-</div>
 
+</div>
     <div class="main-button__container">
         <a href="{% url 'start' %}">
             <button class="main-button">Главная</button>

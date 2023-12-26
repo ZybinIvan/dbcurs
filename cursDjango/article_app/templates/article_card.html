@@ -10,10 +10,18 @@
         {{ instance.text }}
     </div>
     <div class="article-footer">
-        <span>Автор: {{ instance.author }}</span>
+        <span>Автор:  <a href="{% url 'profile' id=instance.author.pk %}">{{ instance.author }}</a></span>
         <span>{{ instance.views }} просмотров</span>
         <span>{{ instance.created_at|date:"Y-m-d" }}</span>
     </div>
+
 </div>
+{% if is_redactor_or_admin %}
+<div class="delete-button__container">
+    <a href="{% url 'delete' id=instance.pk %}" >
+        <button class="delete-button" >Удалить статью</button>
+    </a>
+</div>
+{% endif %}
 
 {% endblock %}

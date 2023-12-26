@@ -1,16 +1,11 @@
 from django import forms
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+
+from .models import Article
 
 
-class UserRegistrationForm(UserCreationForm):
-    # username = forms.CharField(verbose_name="Ник", max_length=20, null=False)
-
+class ArticleCreateForm(forms.ModelForm):
+    title = forms.CharField()
+    text = forms.CharField(widget=forms.Textarea)
     class Meta:
-        model = User
-        fields = ['username', 'email', 'first_name', 'last_name']
-
-
-class UserLoginForm(forms.Form):
-    username = forms.CharField(max_length=150)
-    password = forms.CharField(widget=forms.PasswordInput)
+        model = Article
+        fields = ['title', 'text']

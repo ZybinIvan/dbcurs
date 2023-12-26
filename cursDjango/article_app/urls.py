@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
 
-from .views import render_article, render_start, sign_up_form, user_login
+from .views import render_article, render_start, create_article, delete_article
 
 urlpatterns = [
 
@@ -11,7 +11,8 @@ urlpatterns = [
 
     path('article/<int:pk>/', render_article, name='article_detail'),
 
-    path('sign/', sign_up_form, name='sign'),
+    path('create/', create_article, name='create'),
 
-    path('login/', user_login, name='login'),
+    path('delete-article/<int:id>', delete_article, name='delete'),
+
 ]

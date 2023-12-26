@@ -1,59 +1,49 @@
-from django.contrib.auth import login, authenticate
-from django.contrib import messages
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Article
-from .forms import UserRegistrationForm, UserLoginForm
+from .forms import ArticleCreateForm
 
 
 def render_article(request, id):
-    test = get_object_or_404(Article, pk=id)
+    article = get_object_or_404(Article, pk=id)
+    article.views += 1
+    article.save()
 
-    return render(request, 'article_card.html', {'instance': test})
+    is_redactor_or_admin = False
+    if request.user.is_authenticated:
+        is_redactor_or_admin = request.user.groups.filter(
+            name='Admin').exists() or request.user == article.author
+
+    return render(request, 'article_card.html', {'instance': article, 'is_redactor_or_admin': is_redactor_or_admin})
 
 
 def render_start(request):
-    articles = Article.objects.all()  # Получение всех статей
+    articles = Article.objects.all().order_by('-created_at')
+
     return render(request, 'start.html', {'articles': articles})
 
 
-def sign_up_form(request):
-    if request.user.is_authenticated:
-        return redirect('start')
+def create_article(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
 
     if request.method == 'GET':
-        form = UserRegistrationForm()
-        return render(request, 'register.html', {'form': form})
+        form = ArticleCreateForm()
+        return render(request, 'create.html', {'form': form})
 
     if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
+        form = ArticleCreateForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
-            user.save()
-            messages.success(request, 'You have singed up successfully.')
-            login(request, user)
-            return redirect('start')
+            article = form.save(commit=False)
+            article.author = request.user
+            article.save()
+            return redirect('profile', id=request.user.id)
         else:
-            return render(request, 'register.html', {'form': form})
+            return render(request, 'create.html', {'form': form})
 
 
-def user_login(request):
-    if request.method == 'POST':
-        form = UserLoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                # Пользователь успешно вошел
-                return redirect('start')
-            else:
-                # Неверные учетные данные
-                messages.error(request, 'Неверное имя пользователя или пароль.')
-    else:
-        form = UserLoginForm()
+def delete_article(request, id):
+    article = get_object_or_404(Article, pk=id)
+    article.delete()
 
-    return render(request, 'login.html', {'form': form})
+    return redirect('start')

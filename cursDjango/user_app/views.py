@@ -2,6 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import Group
 
 from .forms import UserRegistrationForm, UserLoginForm
 from article_app.models import Article
@@ -21,6 +22,10 @@ def sign_up_form(request):
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
+
+            unverified_group, _ = Group.objects.get_or_create(name='Unverified')
+            unverified_group.user_set.add(user)
+
             messages.success(request, 'You have singed up successfully.')
             login(request, user)
             return redirect('start')

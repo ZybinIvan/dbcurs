@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/cursDjango/data.json" charset="windows-1251" />
-    <file url="file://$PROJECT_DIR$/cursDjango/data1.json" charset="windows-1251" />
-    <file url="file://$PROJECT_DIR$/cursDjango/db2.json" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cursDjango/output.json" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/datas/data.json" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/datas/data1.json" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/datas/database.dmp" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/datas/database.sql" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/datas/db2.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/datas/output.json" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/main.py" charset="UTF-8" />
   </component>
 </project>

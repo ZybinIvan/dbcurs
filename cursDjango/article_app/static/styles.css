@@ -68,18 +68,17 @@
 }
 
 .au-button {
-    background-color: #007bff; /* Цвет фона */
-    color: #fff; /* Цвет текста */
+    background-color: #007bff;
+    color: #fff;
     border: none;
 
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+
     font-size: 10px;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 4px; /* Скругление углов */
-
+    border-radius: 4px;
     width: 120px;
     height: 30px;
 
@@ -174,4 +173,11 @@
 
 .delete-button:hover {
     background-color: #b81111;
+}
+
+
+.my-custom-form {
+    width: 300px; /* Установите желаемую ширину формы */
+    height: 200px; /* Установите желаемую высоту формы */
+    /* Другие стили по вашему выбору */
 }
